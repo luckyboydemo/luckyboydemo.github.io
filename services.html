@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Resume rewrite, LinkedIn & Naukri optimization, ATS templates, certifications and more — clear pricing, fast delivery on WhatsApp. Smart Online Service services.">
+  <title>Services | Smart Online Service</title>
+  <link rel="icon" href="assets/logo.jpeg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="subpage">
+  <div class="grain"></div>
+  <nav class="subnav">
+    <a class="nav-brand" href="index.html"><img src="assets/logo.jpeg" alt=""><span>Smart Online <b>Service</b></span></a>
+    <a class="back-link" href="index.html">← Back to home</a>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <span class="sec-label">Services</span>
+      <h1>Pick your level. Pay once. Get it on WhatsApp.</h1>
+      <p>Clear pricing, fast delivery. Pay via UPI and get most things within 24–48 hours.</p>
+    </div>
+  </header>
+
+  <div class="ticker review-ticker" aria-label="What our clients say"><div class="ticker-track" id="svcReviewTicker"></div></div>
+
+  <main class="services-page">
+    <div class="svc-samples-cta">
+      <a class="samples-highlight" href="samples.html"><span class="sh-star">★</span> View sample reports &amp; templates <span class="sh-arrow">→</span></a>
+      <a class="samples-highlight samples-highlight-alt" href="services-faq.html"><span class="sh-star">ⓘ</span> Services FAQ — how it works <span class="sh-arrow">→</span></a>
+    </div>
+    <div class="svc-tiles" id="svcTiles"></div>
+
+    <!-- Dedicated platform desks: LinkedIn & Naukri -->
+    <section class="svc-desks">
+      <div class="svc-desks-head">
+        <span class="sec-label">Dedicated desks</span>
+        <h2 class="display">LinkedIn and Naukri are not afterthoughts.</h2>
+        <p>Each platform is searched differently, so each one gets its own rewrite &mdash; not a copy-paste of your resume into a text box.</p>
+      </div>
+      <div class="svc-desk-grid">
+        <article class="svc-desk" id="deskLinkedin"></article>
+        <article class="svc-desk" id="deskNaukri"></article>
+      </div>
+    </section>
+    <div class="svc-followline">
+      <p>If our free tools helped you, a quick follow means a lot:</p>
+      <div class="follow-logos" id="followLogos"></div>
+    </div>
+  </main>
+
+  <section class="sub-contact">
+    <div class="sub-contact-inner">
+      <h5>Contact us</h5>
+      <div class="social-row" id="subSocial"></div>
+      <div class="legal-links"><a href="index.html">Home</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+      <div class="foot-bottom" style="border:0">© 2024–2026 Smart Online Service</div>
+    </div>
+  </section>
+
+  <a class="float-wa" id="floatWa" href="#" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.5 8.5 3.5 15.5c0 2.4.7 4.6 1.8 6.5L3 29l7.2-2.3c1.8 1 3.9 1.6 6 1.6 7 0 12.5-5.5 12.5-12.5S23 3 16 3zm0 22.8c-1.9 0-3.7-.5-5.2-1.5l-.4-.2-4.3 1.4 1.4-4.2-.3-.4a10.3 10.3 0 0 1-1.6-5.6c0-5.7 4.7-10.4 10.4-10.4s10.4 4.7 10.4 10.4S21.7 25.8 16 25.8zm5.7-7.8c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.2 3.3 5.3 4.6.7.3 1.3.5 1.7.7.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.2-.6-.4z" fill="#fff"/></svg>
+  </a>
+
+  <script src="js/config.js"></script>
+  <script src="js/icons.js"></script>
+  <script>
+    (function () {
+      var cfg = SITE_CONFIG;
+      var waUrl = function (m) { return "https://wa.me/" + cfg.whatsapp + "?text=" + encodeURIComponent(m || "Hi! I'd like to know more about Smart Online Service."); };
+      var grid = document.getElementById("svcTiles");
+
+      // Builds the price block: struck original + "% OFF" pill on top, the live
+      // price big below, then the note — clean, left-aligned discount layout.
+      function priceBlock(svc) {
+        var was = "";
+        if (svc.original) {
+          var a = parseInt(String(svc.original).replace(/[^\d]/g, ""), 10);
+          var b = parseInt(String(svc.price).replace(/[^\d]/g, ""), 10);
+          var off = (a && b && b < a) ? '<span class="svc-off">' + Math.round((1 - b / a) * 100) + '% OFF</span>' : "";
+          was = '<div class="svc-price-was"><s class="svc-orig">' + svc.original + '</s>' + off + '</div>';
+        }
+        return '<div class="svc-price">' + was +
+               '<strong>' + svc.price + '</strong>' +
+               '<small>' + svc.priceNote + '</small></div>';
+      }
+
+      (cfg.services || []).forEach(function (svc) {
+        var card = document.createElement("article");
+        var feats = (svc.feats || []).map(function (f) { return '<div>' + f + '</div>'; }).join("");
+        card.className = "svc-card" + (svc.featured ? " featured" : "") + (svc.flagship ? " flagship" : "");
+        var cta = svc.href
+          ? '<a class="svc-cta-link" href="' + svc.href + '">Explore →</a>'
+          : '<a class="svc-cta-link" href="' + waUrl(svc.whatsappMsg) + '" target="_blank" rel="noopener noreferrer">Get this →</a>';
+        var bonus = svc.bonus ? '<div class="bonus-line">🎁 ' + svc.bonus + ' <span>included free</span></div>' : "";
+        card.innerHTML =
+          (svc.featured ? '<span class="best-tag">' + (svc.tagLabel || "BEST VALUE") + '</span>' : "") +
+          '<div class="svc-num">SERVICE ' + svc.id + '</div>' +
+          '<h3 class="svc-title">' + svc.title + '</h3>' +
+          '<div class="svc-feats">' + feats + '</div>' + bonus +
+          '<div class="svc-price-row">' + priceBlock(svc) + cta + '</div>';
+        grid.appendChild(card);
+      });
+
+      // Dedicated LinkedIn / Naukri desks
+      function renderDesk(elId, d, badge) {
+        var el = document.getElementById(elId);
+        if (!el || !d) return;
+        var feats = (d.feats || []).map(function (f) { return "<div>" + f + "</div>"; }).join("");
+        el.innerHTML =
+          '<span class="desk-badge">' + badge + '</span>' +
+          '<h3 class="desk-title">' + d.title + '</h3>' +
+          '<p class="desk-head">' + d.headline + '</p>' +
+          '<p class="desk-body">' + d.body + '</p>' +
+          '<div class="svc-feats">' + feats + '</div>' +
+          '<div class="svc-price-row">' + priceBlock(d) +
+          '<a class="svc-cta-link" href="' + waUrl(d.whatsappMsg) + '" target="_blank" rel="noopener noreferrer">Get this &rarr;</a>' +
+          '</div>';
+      }
+      renderDesk("deskLinkedin", cfg.linkedinSection, "in");
+      renderDesk("deskNaukri", cfg.naukriSection, "N");
+
+      // review ticker
+      var tk = document.getElementById("svcReviewTicker");
+      if (tk && Array.isArray(cfg.reviews)) {
+        var seq = cfg.reviews.map(function (r) { return '<span>' + r + '</span><i>✦</i>'; }).join("");
+        tk.innerHTML = seq + seq;
+      }
+      // follow logos
+      var fl = document.getElementById("followLogos");
+      if (fl && window.SOS_ICON) {
+        fl.innerHTML =
+          '<a class="social-ico" href="' + cfg.instagram + '" target="_blank" rel="noopener noreferrer" aria-label="Instagram">' + SOS_ICON.instagram + '</a>' +
+          '<a class="social-ico" href="' + cfg.youtube + '" target="_blank" rel="noopener noreferrer" aria-label="YouTube">' + SOS_ICON.youtube + '</a>';
+      }
+      var floatWa = document.getElementById("floatWa");
+      if (floatWa) floatWa.href = waUrl("Hi! I'd like to know more about your services.");
+      if (typeof renderContactRow === "function") renderContactRow(document.getElementById("subSocial"), cfg);
+    })();
+  </script>
+</body>
+</html>
